@@ -62,6 +62,8 @@ t() {  # t KEY  -> prints the message in the selected language
   en:dep_missing)  echo "MISSING";;
   pt:dep_missing)  echo "FALTANDO";;
   en:ask_install)  echo "Install the missing packages now?";;
+  en:ask_udev)     echo "Install the udev rule now (needs sudo)?";;
+  pt:ask_udev)     echo "Instalar a regra udev agora (precisa de sudo)?";;
   pt:ask_install)  echo "Instalar agora os pacotes que faltam?";;
   en:manual_cmd)   echo "Install them yourself, then run this script again. Suggested command:";;
   pt:manual_cmd)   echo "Instale você mesmo e rode este script de novo. Comando sugerido:";;

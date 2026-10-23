@@ -36,7 +36,7 @@ check_deps() {
         pt) echo "Para falar com o aparelho em modo FEL sem root, instalo uma regra udev (só para 1f3a:efe8).";;
         *)  echo "To talk to the device in FEL mode without root, I can install a udev rule (only for 1f3a:efe8).";;
       esac
-      if ask_yes ask_install; then
+      if ask_yes ask_udev; then
         printf 'SUBSYSTEM=="usb", ATTR{idVendor}=="1f3a", ATTR{idProduct}=="efe8", MODE="0666"\n' | sudo tee /etc/udev/rules.d/99-hy300-fel.rules >/dev/null \
           && sudo udevadm control --reload-rules && sudo udevadm trigger && RUN="" || RUN="sudo"
       else RUN="sudo"; fi

@@ -88,8 +88,10 @@ before installing and verifies them. It refuses to run if that file does not con
   the original bytes → write → verify; the whole `super` partition then matched the validated image byte for byte.
   The `--restore` path was also run on the real device. (The eMMC write is asynchronous: the tool re-checks and
   rewrites a segment when it did not stick yet — this happened on the last segment in both runs.)
-- ⚠️ **Linux** (only the dependency check and prompts were run, on Ubuntu/aarch64) and **Windows** (not run at all)
-  have **not** been exercised end-to-end. Please report what you find.
+- ✅ The complete **Linux** installer (Ubuntu 26.04 x86_64): `--restore` to stock, then a full install, verified. The
+  step that installs missing packages with apt was only checked on a second machine (it printed the right command;
+  it did not install).
+- ⚠️ **Windows** has **not** been run at all. Please report what you find.
 - ⚠️ Plugging a real USB stick into the File Manager (icon logic), other firmware builds, other HY300 units.
 
 ### How it works (short)
@@ -193,8 +195,10 @@ antes de instalar e verifica. Ele se recusa a rodar se esse arquivo não tiver o
   idêntica, byte a byte, à imagem validada. O caminho `--restore` também foi executado no aparelho real. (A escrita
   na eMMC é assíncrona: a ferramenta reconfere e regrava o trecho que ainda não pegou — isso aconteceu no último
   trecho nas duas execuções.)
-- ⚠️ **Linux** (só a checagem de dependências e os prompts, em Ubuntu/aarch64) e **Windows** (não executado) **não**
-  foram exercitados de ponta a ponta. Por favor, relate o que encontrar.
+- ✅ O instalador **Linux** completo (Ubuntu 26.04 x86_64): `--restore` ao original e depois instalação completa,
+  verificada. A etapa que instala pacotes faltantes com apt só foi checada em outra máquina (mostrou o comando certo;
+  não instalou).
+- ⚠️ O **Windows** **não** foi executado. Por favor, relate o que encontrar.
 - ⚠️ Espetar um pendrive de verdade no Gerenciador de Arquivos (lógica do ícone), outros builds de firmware, outras
   unidades do HY300.
 
