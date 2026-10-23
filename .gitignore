@@ -1,0 +1,4 @@
+work/
+*.bin.bak
+restore-*.bin
+.DS_Store
