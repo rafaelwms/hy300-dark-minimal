@@ -14,6 +14,7 @@
  *                                         WRITES THE DEVICE: refuses unless every segment is original (or already
  *                                         patched); saves restore.bin first; verifies afterwards
  *   restore <manifest> <restore.bin>      WRITES THE DEVICE: puts the saved original bytes back
+ *   diag [all]                            read-only USB troubleshooting (what libusb sees)
  *
  * Exit codes: 0 ok, 1 error, 2 usage, 3 device not in FES mode, 4 no device, 5 unexpected disk contents (nothing
  * written), 6 write failed, 7 verification failed.
@@ -30,6 +31,7 @@
 #include <unistd.h>
 #define SLEEP_S(s) sleep(s)
 #endif
+#include <libusb.h>
 #include "efex-common.h"
 #include "libefex.h"
 #include "sunxi_hdr.h"
@@ -142,6 +144,21 @@ static int cmd_wait(int argc, char **argv) {
 		SLEEP_S(1);
 	}
 	fprintf(stderr, "no FEL device within %d s\n", secs); return 4;
+}
+static int cmd_diag(int argc, char **argv) {   /* read-only USB troubleshooting: lists what libusb can see and whether the HY300 can be opened */
+	libusb_context *c = NULL; libusb_device **l; int r = libusb_init(&c);
+	if (r) { fprintf(stderr, "libusb_init failed: %s\n", libusb_error_name(r)); return 1; }
+	ssize_t n = libusb_get_device_list(c, &l); int found = 0;
+	printf("libusb sees %d USB devices\n", (int) n);
+	for (ssize_t i = 0; i < n; i++) {
+		struct libusb_device_descriptor d; if (libusb_get_device_descriptor(l[i], &d)) continue;
+		int fel = d.idVendor == 0x1f3a && d.idProduct == 0xefe8;
+		if (fel) found = 1;
+		if (fel || argc > 0) printf("  %04x:%04x%s\n", d.idVendor, d.idProduct, fel ? "  <-- Allwinner FEL device" : "");
+		if (fel) { libusb_device_handle *h = NULL; int o = libusb_open(l[i], &h); printf("    open: %s\n", o ? libusb_error_name(o) : "ok"); if (!o) { int k = libusb_claim_interface(h, 0); printf("    claim interface 0: %s\n", k ? libusb_error_name(k) : "ok"); if (!k) libusb_release_interface(h, 0); libusb_close(h); } }
+	}
+	if (!found) printf("No 1f3a:efe8 device is visible to libusb (driver not WinUSB/libusb, cable, or the projector is not in FEL mode).\n");
+	libusb_free_device_list(l, 1); libusb_exit(c); return found ? 0 : 4;
 }
 static int cmd_extract(int argc, char **argv) {
 	if (argc < 2) return 2;
@@ -274,7 +291,7 @@ int main(int argc, char **argv) {
 	if (argc < 2) { fprintf(stderr, "usage: hy300tool wait-fel|extract-fes|load|status|backup|apply|restore ...  (see source header)\n"); return 2; }
 	const char *c = argv[1]; int n = argc - 2; char **a = argv + 2; int r = 2;
 	if (!strcmp(c, "wait-fel")) r = cmd_wait(n, a); else if (!strcmp(c, "extract-fes")) r = cmd_extract(n, a); else if (!strcmp(c, "load")) r = cmd_load(n, a);
-	else if (!strcmp(c, "status")) r = cmd_status(n, a); else if (!strcmp(c, "backup")) r = cmd_backup(n, a); else if (!strcmp(c, "apply")) r = cmd_apply(n, a); else if (!strcmp(c, "restore")) r = cmd_restore(n, a);
+	else if (!strcmp(c, "status")) r = cmd_status(n, a); else if (!strcmp(c, "backup")) r = cmd_backup(n, a); else if (!strcmp(c, "apply")) r = cmd_apply(n, a); else if (!strcmp(c, "restore")) r = cmd_restore(n, a); else if (!strcmp(c, "diag")) r = cmd_diag(n, a);
 	if (r == 2) fprintf(stderr, "bad arguments for '%s'\n", c);
 	return r;
 }
