@@ -143,10 +143,23 @@ if (-not (Test-Path "$Lib\.git")) { if (-not (Ask-Yes $T.net)) { Die $T.aborted 
 git -C $Lib checkout --quiet $LibefexCommit; if ($LASTEXITCODE -ne 0) { Die $T.buildFail }
 if ((git -C $Lib rev-parse HEAD).Trim() -ne $LibefexCommit) { Die "libefex commit mismatch" }
 $Tool = "$WorkDir\hy300tool.exe"
-$build = 'cd "$(cygpath -u ''' + $WorkDir + ''')" && L=libefex && T="$(cygpath -u ''' + $Root + ''')/tools" && ' +
-  'gcc -O2 -I$L/includes -I"$T" $(pkg-config --cflags libusb-1.0) "$T/hy300tool.c" $L/src/efex-common.c $L/src/efex-fel.c $L/src/efex-fes.c $L/src/efex-payloads.c $L/src/efex-usb.c ' +
-  '$L/src/usb/usb_layer.c $L/src/usb/usb_layer_libusb.c $L/src/usb/usb_layer_winusb.c $L/src/arch/*.c $(pkg-config --libs libusb-1.0) -lsetupapi -lwinusb -o hy300tool.exe && cp /mingw64/bin/libusb-1.0.dll .'
-Msys-Run $build
+function To-Msys($p) { $p = $p -replace '\\', '/'; if ($p -match '^([A-Za-z]):(.*)$') { return "/" + $matches[1].ToLower() + $matches[2] }; return $p }
+$buildSh = @'
+set -e
+cd "$HY_WORKDIR_UNIX"
+L=libefex
+T="$HY_ROOT_UNIX/tools"
+gcc -O2 -I$L/includes -I"$T" $(pkg-config --cflags libusb-1.0) "$T/hy300tool.c" \
+  $L/src/efex-common.c $L/src/efex-fel.c $L/src/efex-fes.c $L/src/efex-payloads.c $L/src/efex-usb.c \
+  $L/src/usb/usb_layer.c $L/src/usb/usb_layer_libusb.c $L/src/usb/usb_layer_winusb.c $L/src/arch/*.c \
+  $(pkg-config --libs libusb-1.0) -lsetupapi -lwinusb -o hy300tool.exe
+cp /mingw64/bin/libusb-1.0.dll .
+'@
+$buildFile = "$WorkDir\build.sh"
+[System.IO.File]::WriteAllText($buildFile, ($buildSh -replace "`r`n", "`n"))
+$env:HY_WORKDIR_UNIX = To-Msys $WorkDir
+$env:HY_ROOT_UNIX = To-Msys $Root
+Msys-Run ("bash " + (To-Msys $buildFile))
 Write-Host "$($T.built) $Tool"
 
 # ---- 3. firmware (fes1 / u-boot)
