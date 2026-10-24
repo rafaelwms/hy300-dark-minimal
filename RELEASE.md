@@ -96,7 +96,9 @@ before installing and verifies them. It refuses to run if that file does not con
   to do it with Zadig; that step is manual and graphical).
 - ℹ️ Run `hy300tool diag` (built by the installer) to see what libusb detects if the projector is not found.
 - ✅ A real USB stick (FAT, 2.9 GB) shows up in the File Manager with the stick icon; internal storage keeps the
-  hard-disk icon. Some other sticks did not appear on the first tries; reseating the stick/retrying helped.
+  hard-disk icon. **Caveat:** on the author's unit, USB sticks did not show up in the File Manager until after a factory
+  reset; the cause was not diagnosed (it could be leftover state in the data partition from the install process, or
+  the port itself). If your sticks do not appear, try a factory reset and report it.
 - ⚠️ Other firmware builds and other HY300 units.
 
 ### How it works (short)
@@ -208,8 +210,10 @@ antes de instalar e verifica. Ele se recusa a rodar se esse arquivo não tiver o
   script explica como fazer com o Zadig; essa etapa é manual e gráfica).
 - ℹ️ Rode `hy300tool diag` (compilada pelo instalador) para ver o que o libusb detecta se o projetor não for achado.
 - ✅ Um pendrive de verdade (FAT, 2,9 GB) aparece no Gerenciador de Arquivos com o ícone de pendrive; o armazenamento
-  interno mantém o ícone de disco. Alguns outros pendrives não apareceram nas primeiras tentativas; reencaixar o
-  pendrive/tentar de novo resolveu.
+  interno mantém o ícone de disco. **Ressalva:** na unidade do autor, os pendrives só apareceram no Gerenciador de
+  Arquivos depois de um reset de fábrica; a causa não foi diagnosticada (pode ser estado residual na partição de
+  dados do processo de instalação, ou a própria porta). Se os seus pendrives não aparecerem, tente um reset de fábrica
+  e relate.
 - ⚠️ Outros builds de firmware e outras unidades do HY300.
 
 ### Como funciona (resumo)
