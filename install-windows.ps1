@@ -2,7 +2,9 @@
 # Run from PowerShell:  powershell -ExecutionPolicy Bypass -File .\install-windows.ps1 [-Lang en|pt] [-Firmware C:\path\fw.img] [-DryRun] [-Restore]
 # STATUS: written but NOT tested on a real Windows machine (the author only had macOS/Linux). Read the warnings in RELEASE.md.
 param([string]$Lang = "", [string]$Firmware = "", [switch]$DryRun, [switch]$Restore, [string]$WorkDir = "$env:USERPROFILE\.hy300-minimal")
-$ErrorActionPreference = "Stop"
+# Native tools (gcc, pacman, git, hy300tool) write progress/warnings to stderr; with "Stop" Windows PowerShell 5.1 would turn that into an error.
+# We check $LASTEXITCODE explicitly instead.
+$ErrorActionPreference = "Continue"
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $LibefexUrl = "https://github.com/YuzukiTsuru/libefex.git"
 $LibefexCommit = "3752e38ff8e69190c53cd43290a8102beab55e73"
