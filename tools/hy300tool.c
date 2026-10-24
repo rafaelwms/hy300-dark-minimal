@@ -34,6 +34,7 @@
 #include <libusb.h>
 #include "efex-common.h"
 #include "libefex.h"
+#include "usb_layer.h"
 #include "sunxi_hdr.h"
 
 #define FES_OFFSET 40960u       /* FES address = disk LBA - 40960 (proven on this device) */
@@ -289,6 +290,9 @@ static int cmd_restore(int argc, char **argv) {
 int main(int argc, char **argv) {
 	setvbuf(stdout, NULL, _IONBF, 0);
 	if (argc < 2) { fprintf(stderr, "usage: hy300tool wait-fel|extract-fes|load|status|backup|apply|restore ...  (see source header)\n"); return 2; }
+#ifdef _WIN32
+	sunxi_efex_set_usb_backend(USB_BACKEND_LIBUSB);   /* the Zadig/WinUSB driver has no device-interface GUID, so use libusb */
+#endif
 	const char *c = argv[1]; int n = argc - 2; char **a = argv + 2; int r = 2;
 	if (!strcmp(c, "wait-fel")) r = cmd_wait(n, a); else if (!strcmp(c, "extract-fes")) r = cmd_extract(n, a); else if (!strcmp(c, "load")) r = cmd_load(n, a);
 	else if (!strcmp(c, "status")) r = cmd_status(n, a); else if (!strcmp(c, "backup")) r = cmd_backup(n, a); else if (!strcmp(c, "apply")) r = cmd_apply(n, a); else if (!strcmp(c, "restore")) r = cmd_restore(n, a); else if (!strcmp(c, "diag")) r = cmd_diag(n, a);
