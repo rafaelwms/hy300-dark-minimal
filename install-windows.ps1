@@ -1,6 +1,6 @@
 # HY300 Minimal Black - Windows installer (interactive, English / Portugues-BR). MIT License.
 # Run from PowerShell:  powershell -ExecutionPolicy Bypass -File .\install-windows.ps1 [-Lang en|pt] [-Firmware C:\path\fw.img] [-DryRun] [-Restore]
-# STATUS: written but NOT tested on a real Windows machine (the author only had macOS/Linux). Read the warnings in RELEASE.md.
+# STATUS: tested end to end on one Windows 11 machine (winget + MSYS2 + Zadig/WinUSB). See RELEASE.md.
 param([string]$Lang = "", [string]$Firmware = "", [switch]$DryRun, [switch]$Restore, [string]$WorkDir = "$env:USERPROFILE\.hy300-minimal")
 # Native tools (gcc, pacman, git, hy300tool) write progress/warnings to stderr; with "Stop" Windows PowerShell 5.1 would turn that into an error.
 # We check $LASTEXITCODE explicitly instead.
@@ -26,8 +26,7 @@ $M = @{
    "  * A mistake or a power cut while writing can leave the projector not booting. FEL mode (BootROM) is not affected,",
    "    so it is normally recoverable with -Restore, but there is NO guarantee.",
    "  * The patched apps are signed with the public AOSP test key (see NOTICE.md). Do not install apps from sources you",
-   "    do not trust on this projector.","  * Use a stable power source and do not unplug anything while it is writing.",
-   "  * THIS WINDOWS SCRIPT HAS NOT BEEN TESTED ON REAL WINDOWS. Prefer Linux or macOS if you can.")
+   "    do not trust on this projector.","  * Use a stable power source and do not unplug anything while it is writing.")
   word="I UNDERSTAND"; typeIt="To continue, type exactly"; aborted="Aborted. Nothing was changed."
   deps="[1/6] Checking what is installed on this computer"; ok="found"; missing="MISSING"
   askInstall="Install the missing items now with winget / MSYS2?"; manual="Install them yourself and run this script again:"
@@ -70,8 +69,7 @@ $M = @{
    "  * Um erro ou queda de energia durante a gravacao pode deixar o projetor sem dar boot. O modo FEL (BootROM) nao e afetado,",
    "    entao normalmente da para recuperar com -Restore, mas NAO ha garantia.",
    "  * Os apps modificados sao assinados com a chave de teste publica do AOSP (veja NOTICE.md). Nao instale apps de origem",
-   "    desconhecida neste projetor.","  * Use uma fonte de energia estavel e nao desconecte nada durante a gravacao.",
-   "  * ESTE SCRIPT DE WINDOWS NAO FOI TESTADO EM WINDOWS REAL. Prefira Linux ou macOS se puder.")
+   "    desconhecida neste projetor.","  * Use uma fonte de energia estavel e nao desconecte nada durante a gravacao.")
   word="EU ENTENDO"; typeIt="Para continuar, digite exatamente"; aborted="Cancelado. Nada foi alterado."
   deps="[1/6] Verificando o que esta instalado neste computador"; ok="encontrado"; missing="FALTANDO"
   askInstall="Instalar agora o que falta com winget / MSYS2?"; manual="Instale voce mesmo e rode este script de novo:"

@@ -63,7 +63,7 @@ Download/clone this folder, then:
 |---|---|
 | Linux | `./install-linux.sh` |
 | macOS | `./install-macos.sh` |
-| Windows (**untested**, see below) | `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` |
+| Windows 10/11 | `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` |
 
 The installer is interactive (English or Brazilian Portuguese): it explains the risks and asks you to type a
 confirmation, checks and offers to install what is missing (compiler, git, libusb; Homebrew packages on macOS;
@@ -91,7 +91,10 @@ before installing and verifies them. It refuses to run if that file does not con
 - ✅ The complete **Linux** installer (Ubuntu 26.04 x86_64): `--restore` to stock, then a full install, verified. The
   step that installs missing packages with apt was only checked on a second machine (it printed the right command;
   it did not install).
-- ⚠️ **Windows** has **not** been run at all. Please report what you find.
+- ✅ The complete **Windows** installer (Windows 11, PowerShell 5.1, winget + MSYS2, Zadig/WinUSB): `--restore` to
+  stock, then a full install, verified. Windows needs the **WinUSB driver** for the FEL device (the script tells you how
+  to do it with Zadig; that step is manual and graphical).
+- ℹ️ Run `hy300tool diag` (built by the installer) to see what libusb detects if the projector is not found.
 - ⚠️ Plugging a real USB stick into the File Manager (icon logic), other firmware builds, other HY300 units.
 
 ### How it works (short)
@@ -168,7 +171,7 @@ Baixe/clone esta pasta e rode:
 |---|---|
 | Linux | `./install-linux.sh` |
 | macOS | `./install-macos.sh` |
-| Windows (**não testado**, veja abaixo) | `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` |
+| Windows 10/11 | `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` |
 
 O instalador é interativo (inglês ou português do Brasil): explica os riscos e pede uma confirmação digitada,
 confere e oferece instalar o que falta (compilador, git, libusb; pacotes Homebrew no macOS; MSYS2 + driver WinUSB no
@@ -198,7 +201,10 @@ antes de instalar e verifica. Ele se recusa a rodar se esse arquivo não tiver o
 - ✅ O instalador **Linux** completo (Ubuntu 26.04 x86_64): `--restore` ao original e depois instalação completa,
   verificada. A etapa que instala pacotes faltantes com apt só foi checada em outra máquina (mostrou o comando certo;
   não instalou).
-- ⚠️ O **Windows** **não** foi executado. Por favor, relate o que encontrar.
+- ✅ O instalador **Windows** completo (Windows 11, PowerShell 5.1, winget + MSYS2, Zadig/WinUSB): `--restore` ao
+  original e depois instalação completa, verificada. O Windows precisa do **driver WinUSB** para o dispositivo FEL (o
+  script explica como fazer com o Zadig; essa etapa é manual e gráfica).
+- ℹ️ Rode `hy300tool diag` (compilada pelo instalador) para ver o que o libusb detecta se o projetor não for achado.
 - ⚠️ Espetar um pendrive de verdade no Gerenciador de Arquivos (lógica do ícone), outros builds de firmware, outras
   unidades do HY300.
 
