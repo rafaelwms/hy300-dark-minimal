@@ -95,7 +95,9 @@ before installing and verifies them. It refuses to run if that file does not con
   stock, then a full install, verified. Windows needs the **WinUSB driver** for the FEL device (the script tells you how
   to do it with Zadig; that step is manual and graphical).
 - ℹ️ Run `hy300tool diag` (built by the installer) to see what libusb detects if the projector is not found.
-- ⚠️ Plugging a real USB stick into the File Manager (icon logic), other firmware builds, other HY300 units.
+- ✅ A real USB stick (FAT, 2.9 GB) shows up in the File Manager with the stick icon; internal storage keeps the
+  hard-disk icon. Some other sticks did not appear on the first tries; reseating the stick/retrying helped.
+- ⚠️ Other firmware builds and other HY300 units.
 
 ### How it works (short)
 
@@ -205,8 +207,10 @@ antes de instalar e verifica. Ele se recusa a rodar se esse arquivo não tiver o
   original e depois instalação completa, verificada. O Windows precisa do **driver WinUSB** para o dispositivo FEL (o
   script explica como fazer com o Zadig; essa etapa é manual e gráfica).
 - ℹ️ Rode `hy300tool diag` (compilada pelo instalador) para ver o que o libusb detecta se o projetor não for achado.
-- ⚠️ Espetar um pendrive de verdade no Gerenciador de Arquivos (lógica do ícone), outros builds de firmware, outras
-  unidades do HY300.
+- ✅ Um pendrive de verdade (FAT, 2,9 GB) aparece no Gerenciador de Arquivos com o ícone de pendrive; o armazenamento
+  interno mantém o ícone de disco. Alguns outros pendrives não apareceram nas primeiras tentativas; reencaixar o
+  pendrive/tentar de novo resolveu.
+- ⚠️ Outros builds de firmware e outras unidades do HY300.
 
 ### Como funciona (resumo)
 
