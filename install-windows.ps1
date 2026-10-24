@@ -118,7 +118,7 @@ $gitOk = Have "git"; $msysOk = Test-Path "$Msys\usr\bin\bash.exe"
 Write-Host ("  {0,-26} {1}" -f "git", $(if ($gitOk) { $T.ok } else { $T.missing }))
 Write-Host ("  {0,-26} {1}" -f "MSYS2 (gcc, libusb)", $(if ($msysOk) { $T.ok } else { $T.missing }))
 if (-not ($gitOk -and $msysOk)) {
-  $cmds = @(); if (-not $gitOk) { $cmds += "winget install --id Git.Git -e" }; if (-not $msysOk) { $cmds += "winget install --id MSYS2.MSYS2 -e" }
+  $cmds = @(); if (-not $gitOk) { $cmds += "winget install --id Git.Git -e --accept-package-agreements --accept-source-agreements" }; if (-not $msysOk) { $cmds += "winget install --id MSYS2.MSYS2 -e --accept-package-agreements --accept-source-agreements" }
   if ((Have "winget") -and (Ask-Yes $T.askInstall)) { foreach ($c in $cmds) { Invoke-Expression $c } ; Write-Host "(open a NEW PowerShell window if git is still not found)" }
   else { Write-Host $T.manual; $cmds | ForEach-Object { Write-Host "  $_" }; exit 1 }
   if (-not (Test-Path "$Msys\usr\bin\bash.exe")) { Die "MSYS2 not found in $Msys" }
