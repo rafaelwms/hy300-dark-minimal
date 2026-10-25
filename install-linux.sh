@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# HY300 Minimal Black - Linux installer (interactive, English / Português-BR). MIT License.
+# HY300 Dark Minimal - Linux installer (interactive, English / Português-BR). MIT License.
 set -u
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 # shellcheck source=lib/hy300-common.sh

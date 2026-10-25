@@ -1,4 +1,4 @@
-# HY300 Minimal Black - Windows installer (interactive, English / Portugues-BR). MIT License.
+# HY300 Dark Minimal - Windows installer (interactive, English / Portugues-BR). MIT License.
 # Run from PowerShell:  powershell -ExecutionPolicy Bypass -File .\install-windows.ps1 [-Lang en|pt] [-Firmware C:\path\fw.img] [-DryRun] [-Restore]
 # STATUS: tested end to end on one Windows 11 machine (winget + MSYS2 + Zadig/WinUSB). See RELEASE.md.
 param([string]$Lang = "", [string]$Firmware = "", [switch]$DryRun, [switch]$Restore, [string]$WorkDir = "$env:USERPROFILE\.hy300-minimal")
@@ -14,7 +14,7 @@ $Msys = "C:\msys64"
 
 $M = @{
  en = @{
-  title="HY300 Minimal Black - installer"; riskHead="READ THIS BEFORE CONTINUING"
+  title="HY300 Dark Minimal - installer"; riskHead="READ THIS BEFORE CONTINUING"
   risk=@("This tool writes to the internal storage (eMMC) of a Magcubic HY300 projector (Allwinner H713).",
    "It was made and tested on ONE unit, firmware build UI_Veng.projector.20250221.201033.","",
    "  * Nothing here is endorsed by Magcubic or Allwinner. You do this at your own risk.",
@@ -57,7 +57,7 @@ $M = @{
   noRestore="No restore file found at:"; restoreOk="Original bytes restored and verified. Power-cycle the projector."; yn="[y/N]"; yes=@("y","yes")
  }
  pt = @{
-  title="HY300 Minimal Black - instalador"; riskHead="LEIA ANTES DE CONTINUAR"
+  title="HY300 Dark Minimal - instalador"; riskHead="LEIA ANTES DE CONTINUAR"
   risk=@("Esta ferramenta grava no armazenamento interno (eMMC) de um projetor Magcubic HY300 (Allwinner H713).",
    "Foi feita e testada em UMA unidade, firmware build UI_Veng.projector.20250221.201033.","",
    "  * Nada aqui tem aval da Magcubic ou da Allwinner. Voce faz por sua conta e risco.",

@@ -1,4 +1,4 @@
-/* hy300tool - minimal FEL/FES helper for the Magcubic HY300 "minimal black" patch.
+/* hy300tool - minimal FEL/FES helper for the Magcubic HY300 "dark minimal" patch.
  *
  * MIT License. Uses libefex (MIT, github.com/YuzukiTsuru/libefex) for the USB/FEL protocol.
  * The boot-header structs in sunxi_hdr.h come from libefex's test/fes_flash.c (MIT).

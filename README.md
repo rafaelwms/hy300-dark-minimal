@@ -1,10 +1,10 @@
-# HY300 Minimal Black
+# HY300 Dark Minimal
 
-Black, minimal system for the Magcubic HY300 projector — patch + interactive installers (Linux, macOS, Windows),
+Dark minimalist theme + debloat for the Magcubic HY300 projector — patch + interactive installers (Linux, macOS, Windows),
 English / Português (Brasil). **Read [RELEASE.md](RELEASE.md) first** (risks, requirements, steps) and
 [NOTICE.md](NOTICE.md) (licenses, legal).
 
-Sistema preto e minimalista para o projetor Magcubic HY300 — patch + instaladores interativos (Linux, macOS,
+Tema escuro minimalista + debloat para o projetor Magcubic HY300 — patch + instaladores interativos (Linux, macOS,
 Windows), English / Português (Brasil). **Leia primeiro o [RELEASE.md](RELEASE.md)** (riscos, requisitos, passos) e o
 [NOTICE.md](NOTICE.md) (licenças, aspectos legais).
 

@@ -1,4 +1,4 @@
-# HY300 Minimal Black
+# HY300 Dark Minimal
 
 [English](#english) · [Português (Brasil)](#português-brasil)
 
@@ -6,13 +6,13 @@
 
 ## English
 
-A small patch for the **Magcubic HY300** projector (Allwinner H713, Android 11) that turns the stock system into a
-clean, black, minimal one — and **survives a factory reset**, because it is written into the system partitions
+A **Dark Minimalist theme with debloat** for the **Magcubic HY300** projector (Allwinner H713, Android 11): a small
+patch that turns the stock system into a clean, black, minimal one — and **survives a factory reset**, because it is written into the system partitions
 instead of being installed as app updates.
 
 ### What you get
 
-- **Black, macOS-like look** everywhere: a one-row launcher (HDMI, App Store, Applications, Settings, Files),
+- **Dark minimalist theme** everywhere: a one-row launcher (HDMI, App Store, Applications, Settings, Files),
   Settings (home screen and the main sub-menus; a few deeper dialogs may still show stock colors), File Manager (a hard-disk icon for internal storage, a USB-stick icon for
   drives) and the App Store. Charcoal cards, pure black background, blue only for focus.
 - **Debloat — 18 apps removed from the image:** `com.android.bips`, `bluetoothmidiservice`, `dreams.basic`,
@@ -118,13 +118,13 @@ guides · AOSP · apktool · uber-apk-signer.
 
 ## Português (Brasil)
 
-Um patch pequeno para o projetor **Magcubic HY300** (Allwinner H713, Android 11) que transforma o sistema original
-em um sistema limpo, preto e minimalista — e **sobrevive ao Factory Reset**, porque é gravado nas partições do
+Um **Tema Escuro Minimalista com debloat** para o projetor **Magcubic HY300** (Allwinner H713, Android 11): um patch
+pequeno que transforma o sistema original em um sistema limpo, preto e minimalista — e **sobrevive ao Factory Reset**, porque é gravado nas partições do
 sistema em vez de instalado como atualização de app.
 
 ### O que você ganha
 
-- **Visual preto estilo macOS** em tudo: launcher em fileira única (HDMI, App Store, Aplicativos, Configurações,
+- **Tema escuro minimalista** em tudo: launcher em fileira única (HDMI, App Store, Aplicativos, Configurações,
   Arquivos), Configurações (tela inicial e submenus principais; alguns diálogos mais profundos ainda podem aparecer com as cores originais), Gerenciador de Arquivos (ícone de HD para o armazenamento
   interno, ícone de pendrive para unidades) e a App Store. Cartões em carvão, fundo preto puro, azul só no foco.
 - **Debloat — 18 apps removidos da imagem:** `com.android.bips`, `bluetoothmidiservice`, `dreams.basic`,

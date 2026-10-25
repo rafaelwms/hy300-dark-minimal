@@ -15,8 +15,8 @@ FIRMWARE=""
 # ---------------------------------------------------------------- messages
 t() {  # t KEY  -> prints the message in the selected language
   case "$LANG_SEL:$1" in
-  en:title)        echo "HY300 Minimal Black - installer";;
-  pt:title)        echo "HY300 Minimal Black - instalador";;
+  en:title)        echo "HY300 Dark Minimal - installer";;
+  pt:title)        echo "HY300 Dark Minimal - instalador";;
   en:risk_head)    echo "READ THIS BEFORE CONTINUING";;
   pt:risk_head)    echo "LEIA ANTES DE CONTINUAR";;
   en:risk_body)    printf '%s\n' \
